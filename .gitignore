@@ -1,0 +1,22 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Next.js
+.next/
+out/
+
+# NestJS
+dist/
+*.tsbuildinfo
+
+# Prisma
+secrets.env
+/backend/prisma/dev.db
+/backend/prisma/dev.db-journal
+
+# OS
+.DS_Store

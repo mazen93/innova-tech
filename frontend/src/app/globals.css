@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --color-corporate-dark: #0f172a;
+  --color-corporate-gray: #f8fafc;
+  --color-corporate-blue: #2563eb;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --card: #f8fafc;
+  --card-foreground: #0f172a;
+  --border: #e2e8f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #ffffff; /* Forced light theme per user request for "cleaner, brighter 'corporation' theme" */
+    --foreground: #0f172a;
+    --card: #f8fafc;
+    --card-foreground: #0f172a;
+    --border: #e2e8f0;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bento-card {
+  @apply bg-[#f8fafc] border border-[#e2e8f0] rounded-2xl p-8 hover:shadow-xl transition-all duration-300;
+}
+
+.glass-nav {
+  @apply bg-white/80 backdrop-blur-md border-b border-[#e2e8f0];
+}

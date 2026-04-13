@@ -1,0 +1,17 @@
+#!/bin/bash
+
+BASE_URL="http://localhost:3000/api"
+
+echo "Seeding Services..."
+curl -X POST "$BASE_URL/services" -H "Content-Type: application/json" -d '{"name": "Enterprise Web Development", "nameAr": "تطوير الويب للمؤسسات", "description": "Building secure, scalable, and high-performance web applications tailored to solve complex business challenges.", "descriptionAr": "بناء تطبيقات ويب آمنة وقابلة للتطوير وعالية الأداء مصممة لحل تحديات الأعمال المعقدة.", "icon": "Blocks"}'
+curl -X POST "$BASE_URL/services" -H "Content-Type: application/json" -d '{"name": "Mobile Experiences", "nameAr": "تجارب الموبايل", "description": "Creating intuitive, natively compiled applications for iOS and Android.", "descriptionAr": "إنشاء تطبيقات بديهية مجمعة أصلاً لأنظمة iOS و Android.", "icon": "Smartphone"}'
+curl -X POST "$BASE_URL/services" -H "Content-Type: application/json" -d '{"name": "Growth Marketing", "nameAr": "تسويق النمو", "description": "Data-driven strategies to scale user acquisition and customer retention.", "descriptionAr": "استراتيجيات تعتمد على البيانات لتوسيع نطاق اكتساب المستخدمين والاحتفاظ بالعملاء.", "icon": "LineChart"}'
+curl -X POST "$BASE_URL/services" -H "Content-Type: application/json" -d '{"name": "Platform Architecture", "nameAr": "هندسة المنصات", "description": "Designing scalable microservices, resolving technical debt, and building resilient APIs.", "descriptionAr": "تصميم بنية خدمات مصغرة قابلة للتطوير، وحل الديون الفنية، وبناء واجهات برمجة تطبيقات مرنة.", "icon": "ShieldCheck"}'
+curl -X POST "$BASE_URL/services" -H "Content-Type: application/json" -d '{"name": "AI Integration", "nameAr": "التكامل مع الذكاء الاصطناعي", "description": "Bringing the power of Large Language Models (LLMs) and intelligent automation into workflows.", "descriptionAr": "جلب قوة نماذج اللغة الكبيرة (LLMs) والأتمتة الذكية إلى سير العمل.", "icon": "Zap"}'
+
+echo -e "\nSeeding Products..."
+curl -X POST "$BASE_URL/products" -H "Content-Type: application/json" -d '{"name": "Idarax", "nameAr": "إيداراكس", "tagline": "Omnichannel Commerce Engine", "taglineAr": "محرك التجارة متعدد القنوات", "description": "A comprehensive SaaS ecosystem designed for modern retail and restaurant operations.", "descriptionAr": "نظام بيئي شامل SaaS مصمم لعمليات البيع بالتجزئة والمطاعم الحديثة.", "features": "Multi-tenant POS, AI Call Center, Real-time CRM", "featuresAr": "نقاط بيع متعددة المستأجرين، مركز اتصال بالذكاء الاصطناعي، إدارة علاقات العملاء في الوقت الفعلي"}'
+curl -X POST "$BASE_URL/products" -H "Content-Type: application/json" -d '{"name": "Drovo", "nameAr": "دروفو", "tagline": "Smart Logistics & Delivery", "taglineAr": "اللوجستيات والتوصيل الذكي", "description": "Redefining the last mile with intelligent routing and automated fleet management.", "descriptionAr": "إعادة تعريف الميل الأخير باستخدام التوجيه الذكي والإدارة الآلية للأسطول.", "features": "Automated Routing, Real-time Tracking, Dynamic Dispatch", "featuresAr": "التوجيه الآلي، التتبع في الوقت الفعلي، الإرسال الديناميكي"}'
+curl -X POST "$BASE_URL/products" -H "Content-Type: application/json" -d '{"name": "Shukran", "nameAr": "شكراً", "tagline": "Customer Appreciation Redefined", "taglineAr": "إعادة تعريف تقدير العملاء", "description": "A loyalty and rewards platform built on gratitude.", "descriptionAr": "منصة ولاء ومكافآت مبنية على الامتنان.", "features": "Reward Tiers, Sentiment Analysis, Unified Wallet", "featuresAr": "مستويات المكافآت، تحليل المشاعر، محفظة موحدة"}'
+
+echo -e "\nSeeding complete!"

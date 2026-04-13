@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Service {
+  id            Int      @id @default(autoincrement())
+  name          String
+  nameAr        String?
+  description   String
+  descriptionAr String?
+  icon          String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Product {
+  id            Int      @id @default(autoincrement())
+  name          String
+  nameAr        String?
+  tagline       String
+  taglineAr     String?
+  description   String
+  descriptionAr String?
+  image         String?
+  features      String // JSON string or comma-separated
+  featuresAr    String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model ThemeSettings {
+  id                Int      @id @default(autoincrement())
+  primaryColor      String   @default("#2563eb")
+  textColor         String   @default("#0f172a")
+  sectionBgColor    String   @default("#f8fafc")
+  sectionBgColorAlt String   @default("#ffffff")
+  logoUrl           String?  // URL or path to the logo image
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  company   String?
+  message   String
+  createdAt DateTime @default(now())
+}
