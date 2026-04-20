@@ -81,7 +81,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="p-8 md:p-12 rounded-3xl border shadow-xl shadow-slate-200/50" style={{ backgroundColor: 'var(--theme-section-alt)', borderColor: 'var(--theme-primary)' }}>
+          <div className="p-8 md:p-12 rounded-3xl border shadow-xl shadow-black/5" style={{ backgroundColor: 'var(--theme-section-alt)', borderColor: 'var(--theme-border)' }}>
             <h3 className="text-2xl font-bold mb-6" style={{ color: 'var(--theme-text)' }}>
               {lang === 'ar' ? 'أرسل رسالة' : 'Send a Message'}
             </h3>
@@ -96,22 +96,22 @@ export default function Contact() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-semibold mb-2" style={{ color: 'var(--theme-text)' }}>{lang === 'ar' ? 'الاسم *' : 'Name *'}</label>
-                  <input required name="name" type="text" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition" placeholder="John Doe" />
+                  <input required name="name" type="text" className="w-full px-4 py-3 border rounded-lg focus:outline-none transition" style={{ backgroundColor: 'var(--theme-section-bg)', borderColor: 'rgba(0,0,0,0.1)', color: 'var(--theme-text)' }} placeholder="John Doe" />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold mb-2" style={{ color: 'var(--theme-text)' }}>{lang === 'ar' ? 'البريد الإلكتروني *' : 'Email *'}</label>
-                  <input required name="email" type="email" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition" placeholder="john@company.com" />
+                  <input required name="email" type="email" className="w-full px-4 py-3 border rounded-lg focus:outline-none transition" style={{ backgroundColor: 'var(--theme-section-bg)', borderColor: 'rgba(0,0,0,0.1)', color: 'var(--theme-text)' }} placeholder="john@company.com" />
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-semibold mb-2" style={{ color: 'var(--theme-text)' }}>{lang === 'ar' ? 'الشركة' : 'Company'}</label>
-                <input name="company" type="text" className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition" placeholder="Your Company" />
+                <input name="company" type="text" className="w-full px-4 py-3 border rounded-lg focus:outline-none transition" style={{ backgroundColor: 'var(--theme-section-bg)', borderColor: 'rgba(0,0,0,0.1)', color: 'var(--theme-text)' }} placeholder="Your Company" />
               </div>
               <div>
                 <label className="block text-sm font-semibold mb-2" style={{ color: 'var(--theme-text)' }}>{lang === 'ar' ? 'الرسالة *' : 'Message *'}</label>
-                <textarea required name="message" rows={4} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none" placeholder={lang === 'ar' ? 'أخبرنا عن مشروعك...' : 'Tell us about your project...'}></textarea>
+                <textarea required name="message" rows={4} className="w-full px-4 py-3 border rounded-lg focus:outline-none transition resize-none" style={{ backgroundColor: 'var(--theme-section-bg)', borderColor: 'rgba(0,0,0,0.1)', color: 'var(--theme-text)' }} placeholder={lang === 'ar' ? 'أخبرنا عن مشروعك...' : 'Tell us about your project...'}></textarea>
               </div>
-              <button disabled={status === 'loading'} type="submit" className="w-full py-4 text-white font-bold rounded-lg disabled:opacity-50 transition flex items-center justify-center gap-2 hover:opacity-90" style={{ backgroundColor: 'var(--theme-primary)' }}>
+              <button disabled={status === 'loading'} type="submit" className="w-full py-4 font-bold rounded-lg disabled:opacity-50 transition flex items-center justify-center gap-2 hover:opacity-90" style={{ backgroundColor: 'var(--theme-primary)', color: 'var(--theme-primary-text)' }}>
                 {status === 'loading' ? (lang === 'ar' ? 'جاري الإرسال...' : 'Sending...') : <>{lang === 'ar' ? 'إرسال الرسالة' : 'Send Message'} <Send size={18} /></>}
               </button>
             </form>

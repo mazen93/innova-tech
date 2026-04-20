@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
+import Image from 'next/image';
 
 interface LogoProps {
   /** The background color the logo sits on (hex). Used to decide if we invert to white. */
@@ -40,21 +41,45 @@ function isDark(hex: string): boolean {
 /**
  * Smart Logo — renders the logo image (admin-set URL or default /logo.png)
  * and auto-inverts to white on dark backgrounds for perfect legibility.
+ * Uses next/image for automatic WebP/AVIF optimization.
  */
 export function Logo({ bgColor, src, className = '' }: LogoProps) {
   const dark = useMemo(() => isDark(bgColor), [bgColor]);
   const logoSrc = src || '/logo.png';
+  const isExternal = logoSrc.startsWith('http');
 
+  const imgStyle = {
+    filter: dark ? 'brightness(0) invert(1)' : 'none',
+    transition: 'filter 0.3s ease',
+  };
+
+  if (isExternal) {
+    // For dynamic external URLs (from admin), we still use next/image but unoptimized won't apply
+    // We need width/height for next/image — we use fill with a container instead
+    return (
+      <div className={`relative ${className}`} style={{ width: 'auto', aspectRatio: '4/1' }}>
+        <Image
+          src={logoSrc}
+          alt="Innova Tech"
+          fill
+          className="object-contain"
+          style={imgStyle}
+          priority
+        />
+      </div>
+    );
+  }
+
+  // For local /logo.png, use optimized next/image with known dimensions
   return (
-    <img
+    <Image
       src={logoSrc}
       alt="Innova Tech"
-      className={className}
-      style={{
-        filter: dark ? 'brightness(0) invert(1)' : 'none',
-        transition: 'filter 0.3s ease',
-      }}
+      width={140}
+      height={35}
+      className={`object-contain ${className}`}
+      style={{ ...imgStyle, width: 'auto' }}
+      priority
     />
   );
 }
-

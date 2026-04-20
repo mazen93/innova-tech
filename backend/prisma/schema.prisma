@@ -27,6 +27,7 @@ model Product {
   description   String
   descriptionAr String?
   image         String?
+  link          String?
   features      String // JSON string or comma-separated
   featuresAr    String?
   createdAt     DateTime @default(now())
@@ -35,11 +36,20 @@ model Product {
 
 model ThemeSettings {
   id                Int      @id @default(autoincrement())
-  primaryColor      String   @default("#2563eb")
-  textColor         String   @default("#0f172a")
-  sectionBgColor    String   @default("#f8fafc")
-  sectionBgColorAlt String   @default("#ffffff")
-  logoUrl           String?  // URL or path to the logo image
+  primaryColor           String   @default("#2563eb")
+  primaryButtonTextColor String   @default("#ffffff")
+  textColor              String   @default("#0f172a")
+  sectionBgColor         String   @default("#f8fafc")
+  sectionBgColorAlt      String   @default("#ffffff")
+  borderColor            String   @default("#e2e8f0")
+  sidebarBgColor         String   @default("#ffffff")
+  logoUrl                String?  // URL or path to the logo image
+  facebookUrl       String?
+  twitterUrl        String?
+  instagramUrl      String?
+  linkedinUrl       String?
+  youtubeUrl        String?
+  tiktokUrl         String?
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 }

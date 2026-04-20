@@ -33,7 +33,7 @@ export class AppController {
   }
 
   @Post('products')
-  createProduct(@Body() data: { name: string; nameAr?: string; tagline: string; taglineAr?: string; description: string; descriptionAr?: string; features: string; featuresAr?: string; image?: string }) {
+  createProduct(@Body() data: { name: string; nameAr?: string; tagline: string; taglineAr?: string; description: string; descriptionAr?: string; features: string; featuresAr?: string; image?: string; link?: string }) {
     return this.prisma.product.create({ data });
   }
 
@@ -43,7 +43,7 @@ export class AppController {
   }
 
   @Patch('products/:id')
-  updateProduct(@Param('id') id: string, @Body() data: { name?: string; nameAr?: string; tagline?: string; taglineAr?: string; description?: string; descriptionAr?: string; features?: string; featuresAr?: string; image?: string }) {
+  updateProduct(@Param('id') id: string, @Body() data: { name?: string; nameAr?: string; tagline?: string; taglineAr?: string; description?: string; descriptionAr?: string; features?: string; featuresAr?: string; image?: string; link?: string }) {
     return this.prisma.product.update({ where: { id: Number(id) }, data });
   }
 
@@ -79,22 +79,54 @@ export class AppController {
     let theme = await this.prisma.themeSettings.findFirst();
     if (!theme) {
       theme = await this.prisma.themeSettings.create({
-        data: { primaryColor: '#2563eb', textColor: '#0f172a', sectionBgColor: '#f8fafc', sectionBgColorAlt: '#ffffff' }
+        data: { 
+          primaryColor: '#2563eb', 
+          primaryButtonTextColor: '#ffffff',
+          textColor: '#0f172a', 
+          sectionBgColor: '#f8fafc', 
+          sectionBgColorAlt: '#ffffff',
+          borderColor: '#e2e8f0',
+          sidebarBgColor: '#ffffff'
+        }
       });
     }
     return theme;
   }
 
   @Patch('theme')
-  async updateTheme(@Body() data: { primaryColor?: string; textColor?: string; sectionBgColor?: string; sectionBgColorAlt?: string; logoUrl?: string }) {
+  async updateTheme(@Body() data: { 
+    primaryColor?: string; 
+    primaryButtonTextColor?: string;
+    textColor?: string; 
+    sectionBgColor?: string; 
+    sectionBgColorAlt?: string; 
+    borderColor?: string;
+    sidebarBgColor?: string;
+    logoUrl?: string;
+    facebookUrl?: string;
+    twitterUrl?: string;
+    instagramUrl?: string;
+    linkedinUrl?: string;
+    youtubeUrl?: string;
+    tiktokUrl?: string;
+  }) {
     let theme = await this.prisma.themeSettings.findFirst();
     if (!theme) {
       return this.prisma.themeSettings.create({ data: { 
         primaryColor: data.primaryColor || '#2563eb', 
+        primaryButtonTextColor: data.primaryButtonTextColor || '#ffffff',
         textColor: data.textColor || '#0f172a',
         sectionBgColor: data.sectionBgColor || '#f8fafc',
         sectionBgColorAlt: data.sectionBgColorAlt || '#ffffff',
-        logoUrl: data.logoUrl || null
+        borderColor: data.borderColor || '#e2e8f0',
+        sidebarBgColor: data.sidebarBgColor || '#ffffff',
+        logoUrl: data.logoUrl || null,
+        facebookUrl: data.facebookUrl || null,
+        twitterUrl: data.twitterUrl || null,
+        instagramUrl: data.instagramUrl || null,
+        linkedinUrl: data.linkedinUrl || null,
+        youtubeUrl: data.youtubeUrl || null,
+        tiktokUrl: data.tiktokUrl || null
       } });
     }
     return this.prisma.themeSettings.update({ where: { id: theme.id }, data });

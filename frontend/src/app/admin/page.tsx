@@ -15,10 +15,19 @@ export default function AdminDashboard() {
 
   const [themeForm, setThemeForm] = useState({ 
     primaryColor: theme.primaryColor, 
+    primaryButtonTextColor: theme.primaryButtonTextColor || '#ffffff',
     textColor: theme.textColor,
     sectionBgColor: theme.sectionBgColor,
     sectionBgColorAlt: theme.sectionBgColorAlt,
-    logoUrl: theme.logoUrl || ''
+    borderColor: theme.borderColor,
+    sidebarBgColor: theme.sidebarBgColor,
+    logoUrl: theme.logoUrl || '',
+    facebookUrl: theme.facebookUrl || '',
+    twitterUrl: theme.twitterUrl || '',
+    instagramUrl: theme.instagramUrl || '',
+    linkedinUrl: theme.linkedinUrl || '',
+    youtubeUrl: theme.youtubeUrl || '',
+    tiktokUrl: theme.tiktokUrl || ''
   });
 
   // Auth Handler
@@ -67,10 +76,19 @@ export default function AdminDashboard() {
   useEffect(() => {
     setThemeForm({ 
       primaryColor: theme.primaryColor, 
+      primaryButtonTextColor: theme.primaryButtonTextColor || '#ffffff',
       textColor: theme.textColor,
       sectionBgColor: theme.sectionBgColor,
       sectionBgColorAlt: theme.sectionBgColorAlt,
-      logoUrl: theme.logoUrl || ''
+      borderColor: theme.borderColor,
+      sidebarBgColor: theme.sidebarBgColor,
+      logoUrl: theme.logoUrl || '',
+      facebookUrl: theme.facebookUrl || '',
+      twitterUrl: theme.twitterUrl || '',
+      instagramUrl: theme.instagramUrl || '',
+      linkedinUrl: theme.linkedinUrl || '',
+      youtubeUrl: theme.youtubeUrl || '',
+      tiktokUrl: theme.tiktokUrl || ''
     });
   }, [theme]);
 
@@ -117,9 +135,9 @@ export default function AdminDashboard() {
 
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center p-6">
+      <div className="min-h-screen flex items-center justify-center p-6" style={{ backgroundColor: 'var(--theme-text)' }}>
         <div className="bg-white p-8 rounded-3xl w-full max-w-md shadow-2xl">
-          <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto" style={{ backgroundColor: 'rgba(0,0,0,0.05)', color: 'var(--theme-primary)' }}>
             <Lock size={32} />
           </div>
           <h1 className="text-2xl font-bold text-center text-slate-900 mb-2">Admin Portal</h1>
@@ -128,11 +146,15 @@ export default function AdminDashboard() {
             <input 
               type="password" 
               placeholder="Password" 
-              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 transition"
+              style={{ '--tw-ring-color': 'var(--theme-primary)' } as any}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition">
+            <button 
+              className="w-full py-3 text-white font-bold rounded-xl transition hover:opacity-90"
+              style={{ backgroundColor: 'var(--theme-primary)' }}
+            >
               Sign In
             </button>
           </form>
@@ -142,11 +164,14 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="bg-slate-50 min-h-screen pt-24 pb-12 px-6 lg:px-12">
+    <div className="min-h-screen pt-24 pb-12 px-6 lg:px-12" style={{ backgroundColor: 'var(--theme-section-bg)' }}>
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
         
         {/* Sidebar */}
-        <div className="lg:w-64 bg-white border border-slate-200 rounded-3xl p-6 h-fit lg:sticky lg:top-28">
+        <div 
+          className="lg:w-64 border rounded-3xl p-6 h-fit lg:sticky lg:top-28"
+          style={{ backgroundColor: 'var(--theme-sidebar-bg)', borderColor: 'var(--theme-border)' }}
+        >
           <div className="font-bold text-slate-400 text-xs uppercase tracking-widest mb-6">CMS Console</div>
           <nav className="space-y-2">
             {[
@@ -158,7 +183,11 @@ export default function AdminDashboard() {
               <button 
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)} 
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition ${activeTab === tab.id ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'text-slate-600 hover:bg-slate-50'}`}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition ${activeTab === tab.id ? 'text-white shadow-lg' : 'text-slate-600 hover:bg-slate-50'}`}
+                style={activeTab === tab.id ? { 
+                  backgroundColor: 'var(--theme-primary)',
+                  boxShadow: `0 10px 15px -3px var(--theme-primary)40` 
+                } : {}}
               >
                 <tab.icon size={18} /> {tab.label}
               </button>
@@ -214,7 +243,21 @@ export default function AdminDashboard() {
                   <label className="block text-sm font-bold text-slate-700 mb-2">Alternate Section Background</label>
                   <div className="flex items-center gap-4">
                     <input type="color" value={themeForm.sectionBgColorAlt} onChange={e => setThemeForm({...themeForm, sectionBgColorAlt: e.target.value})} className="w-16 h-16 rounded cursor-pointer border-0 p-0" />
-                    <input type="text" value={themeForm.sectionBgColorAlt} onChange={e => setThemeForm({...themeForm, sectionBgColorAlt: e.target.value})} className="flex-1 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 uppercase font-mono" />
+                    <input type="text" value={themeForm.sectionBgColorAlt} onChange={e => setThemeForm({...themeForm, sectionBgColorAlt: e.target.value})} className="flex-1 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 transition uppercase font-mono" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-2">Border Color</label>
+                  <div className="flex items-center gap-4">
+                    <input type="color" value={themeForm.borderColor} onChange={e => setThemeForm({...themeForm, borderColor: e.target.value})} className="w-16 h-16 rounded cursor-pointer border-0 p-0" />
+                    <input type="text" value={themeForm.borderColor} onChange={e => setThemeForm({...themeForm, borderColor: e.target.value})} className="flex-1 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 transition uppercase font-mono" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-2">Admin Sidebar Background</label>
+                  <div className="flex items-center gap-4">
+                    <input type="color" value={themeForm.sidebarBgColor} onChange={e => setThemeForm({...themeForm, sidebarBgColor: e.target.value})} className="w-16 h-16 rounded cursor-pointer border-0 p-0" />
+                    <input type="text" value={themeForm.sidebarBgColor} onChange={e => setThemeForm({...themeForm, sidebarBgColor: e.target.value})} className="flex-1 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 transition uppercase font-mono" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
                   </div>
                 </div>
                 {/* ── Logo Manager ── */}
@@ -254,7 +297,41 @@ export default function AdminDashboard() {
                   <p className="text-xs text-slate-400 mt-2">Leave empty to use the default /logo.png from the server.</p>
                 </div>
 
-                <button type="submit" className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-200">
+                {/* ── Social Media Manager ── */}
+                <div className="border border-slate-200 rounded-2xl p-6 bg-slate-50 space-y-4">
+                  <div>
+                    <label className="block text-sm font-bold text-slate-700 mb-1">Social Media Links</label>
+                    <p className="text-xs text-slate-400 mb-4">Links will only appear in the footer if provided.</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      { id: 'facebookUrl', label: 'Facebook', placeholder: 'https://facebook.com/...' },
+                      { id: 'instagramUrl', label: 'Instagram', placeholder: 'https://instagram.com/...' },
+                      { id: 'twitterUrl', label: 'X (Twitter)', placeholder: 'https://twitter.com/...' },
+                      { id: 'linkedinUrl', label: 'LinkedIn', placeholder: 'https://linkedin.com/in/...' },
+                      { id: 'youtubeUrl', label: 'YouTube', placeholder: 'https://youtube.com/@...' },
+                      { id: 'tiktokUrl', label: 'TikTok', placeholder: 'https://tiktok.com/@...' },
+                    ].map((link) => (
+                      <div key={link.id}>
+                        <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-1">{link.label}</label>
+                        <input 
+                          type="url" 
+                          placeholder={link.placeholder}
+                          value={(themeForm as any)[link.id]}
+                          onChange={e => setThemeForm({...themeForm, [link.id]: e.target.value})}
+                          className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <button 
+                  type="submit" 
+                  className="w-full py-3 text-white font-bold rounded-xl transition shadow-lg hover:opacity-90"
+                  style={{ backgroundColor: 'var(--theme-primary)', boxShadow: `0 10px 15px -3px var(--theme-primary)40` }}
+                >
                   Save Theme Configuration
                 </button>
               </form>
@@ -289,7 +366,8 @@ export default function AdminDashboard() {
                           {activeTab !== 'messages' && (
                             <button 
                               onClick={() => { setEditingItem(item); setShowModal(true); }}
-                              className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition"
+                              className="p-2 text-slate-400 hover:opacity-70 rounded-lg transition"
+                              style={{ color: 'var(--theme-primary)' }}
                             >
                               <Edit3 size={18} />
                             </button>
@@ -324,11 +402,11 @@ export default function AdminDashboard() {
                 <div className="flex gap-4">
                   <div className="flex-1">
                     <label className="block text-sm font-bold text-slate-700 mb-2">Name (EN)</label>
-                    <input name="name" defaultValue={editingItem?.name} required className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500" />
+                    <input name="name" defaultValue={editingItem?.name} required className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-2 transition" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
                   </div>
                   <div className="flex-1" dir="rtl">
                     <label className="block text-sm font-bold text-slate-700 mb-2 text-right">الاسم (AR)</label>
-                    <input name="nameAr" defaultValue={editingItem?.nameAr} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-right" />
+                    <input name="nameAr" defaultValue={editingItem?.nameAr} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 transition text-right" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
                   </div>
                 </div>
                 
@@ -337,16 +415,16 @@ export default function AdminDashboard() {
                     <div className="flex gap-4">
                       <div className="flex-1">
                         <label className="block text-sm font-bold text-slate-700 mb-2">Description (EN)</label>
-                        <textarea name="description" defaultValue={editingItem?.description} required rows={3} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 resize-none" />
+                        <textarea name="description" defaultValue={editingItem?.description} required rows={3} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 transition resize-none" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
                       </div>
                       <div className="flex-1" dir="rtl">
                         <label className="block text-sm font-bold text-slate-700 mb-2 text-right">الوصف (AR)</label>
-                        <textarea name="descriptionAr" defaultValue={editingItem?.descriptionAr} rows={3} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 resize-none text-right" />
+                        <textarea name="descriptionAr" defaultValue={editingItem?.descriptionAr} rows={3} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 transition resize-none text-right" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
                       </div>
                     </div>
                     <div>
                       <label className="block text-sm font-bold text-slate-700 mb-2">Icon ID (Lucide Name)</label>
-                      <input name="icon" defaultValue={editingItem?.icon} placeholder="Globe, Smartphone, etc." className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500" />
+                      <input name="icon" defaultValue={editingItem?.icon} placeholder="Globe, Smartphone, etc." className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-2 transition" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
                     </div>
                   </>
                 ) : (
@@ -354,31 +432,41 @@ export default function AdminDashboard() {
                     <div className="flex gap-4">
                       <div className="flex-1">
                         <label className="block text-sm font-bold text-slate-700 mb-2">Tagline (EN)</label>
-                        <input name="tagline" defaultValue={editingItem?.tagline} required className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500" />
+                        <input name="tagline" defaultValue={editingItem?.tagline} required className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-2 transition" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
                       </div>
                       <div className="flex-1" dir="rtl">
                         <label className="block text-sm font-bold text-slate-700 mb-2 text-right">الشعار اللفظي (AR)</label>
-                        <input name="taglineAr" defaultValue={editingItem?.taglineAr} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-right" />
+                        <input name="taglineAr" defaultValue={editingItem?.taglineAr} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 transition text-right" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
                       </div>
                     </div>
                     <div className="flex gap-4">
                       <div className="flex-1">
                         <label className="block text-sm font-bold text-slate-700 mb-2">Description (EN)</label>
-                        <textarea name="description" defaultValue={editingItem?.description} required rows={2} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 resize-none" />
+                        <textarea name="description" defaultValue={editingItem?.description} required rows={2} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 transition resize-none" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
                       </div>
                       <div className="flex-1" dir="rtl">
                         <label className="block text-sm font-bold text-slate-700 mb-2 text-right">الوصف (AR)</label>
-                        <textarea name="descriptionAr" defaultValue={editingItem?.descriptionAr} rows={2} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 resize-none text-right" />
+                        <textarea name="descriptionAr" defaultValue={editingItem?.descriptionAr} rows={2} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 transition resize-none text-right" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
+                      </div>
+                    </div>
+                     <div className="flex gap-4">
+                      <div className="flex-1">
+                        <label className="block text-sm font-bold text-slate-700 mb-2">Features (EN, Comma separated)</label>
+                        <input name="features" defaultValue={editingItem?.features} required className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-2 transition" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
+                      </div>
+                      <div className="flex-1" dir="rtl">
+                        <label className="block text-sm font-bold text-slate-700 mb-2 text-right">المميزات (AR، مفصولة بفواصل)</label>
+                        <input name="featuresAr" defaultValue={editingItem?.featuresAr} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 transition text-right" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
                       </div>
                     </div>
                     <div className="flex gap-4">
                       <div className="flex-1">
-                        <label className="block text-sm font-bold text-slate-700 mb-2">Features (EN, Comma separated)</label>
-                        <input name="features" defaultValue={editingItem?.features} required className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500" />
+                        <label className="block text-sm font-bold text-slate-700 mb-2">External Website Link</label>
+                        <input name="link" defaultValue={editingItem?.link} placeholder="https://..." className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-2 transition" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
                       </div>
-                      <div className="flex-1" dir="rtl">
-                        <label className="block text-sm font-bold text-slate-700 mb-2 text-right">المميزات (AR، مفصولة بفواصل)</label>
-                        <input name="featuresAr" defaultValue={editingItem?.featuresAr} className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-right" />
+                      <div className="flex-1">
+                        <label className="block text-sm font-bold text-slate-700 mb-2">Product Image URL</label>
+                        <input name="image" defaultValue={editingItem?.image} placeholder="https://..." className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-2 transition" style={{ '--tw-ring-color': 'var(--theme-primary)' } as any} />
                       </div>
                     </div>
                   </>
@@ -386,7 +474,7 @@ export default function AdminDashboard() {
               </div>
               <div className="flex gap-4 pt-4">
                 <button type="button" onClick={() => setShowModal(false)} className="flex-1 py-3 text-slate-600 font-bold hover:bg-slate-50 rounded-xl transition">Cancel</button>
-                <button type="submit" className="flex-1 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-200 transition">Save Changes</button>
+                <button type="submit" className="flex-1 py-3 font-bold rounded-xl shadow-lg transition hover:opacity-90" style={{ backgroundColor: 'var(--theme-primary)', color: 'var(--theme-primary-text)' }}>Save Changes</button>
               </div>
             </form>
           </div>

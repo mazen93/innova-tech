@@ -44,7 +44,7 @@ export default function Products() {
              {lang === 'ar' ? 'جاري تحميل المنظومة...' : 'Loading ecosystem...'}
           </div>
         ) : products.length === 0 ? (
-          <div className="text-center py-20 border-2 border-dashed border-slate-200 rounded-3xl opacity-50 bg-white" style={{ color: 'var(--theme-text)' }}>
+          <div className="text-center py-20 border-2 border-dashed rounded-3xl opacity-50" style={{ color: 'var(--theme-text)', borderColor: 'var(--theme-border)' }}>
             {lang === 'ar' ? 'منظومة منتجاتنا تتوسع حاليًا.' : 'Our product ecosystem is currently expanding. Visit the Dashboard to add entries.'}
           </div>
         ) : (
@@ -56,9 +56,13 @@ export default function Products() {
               const features = lang === 'ar' && prod.featuresAr ? prod.featuresAr : prod.features;
 
               return (
-              <div key={prod.id} className="rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-12 group hover:shadow-xl transition-all duration-300 border" style={{ backgroundColor: 'var(--theme-section-alt)', borderColor: 'var(--theme-primary)' }}>
-                <div className="w-32 h-32 md:w-48 md:h-48 rounded-2xl shrink-0 flex items-center justify-center text-white shadow-xl transform group-hover:scale-105 transition-transform duration-500" style={{ backgroundColor: 'var(--theme-primary)' }}>
-                  <span className="text-6xl font-serif font-bold italic">{name[0]}</span>
+              <div key={prod.id} className="rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-12 group hover:shadow-xl transition-all duration-300 border" style={{ backgroundColor: 'var(--theme-section-alt)', borderColor: 'var(--theme-border)' }}>
+                <div className="w-32 h-32 md:w-48 md:h-48 rounded-2xl shrink-0 flex items-center justify-center shadow-xl transform group-hover:scale-105 transition-transform duration-500 overflow-hidden" style={{ backgroundColor: 'var(--theme-primary)', color: 'var(--theme-primary-text)' }}>
+                  {prod.image ? (
+                    <img src={prod.image} alt={name} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-6xl font-serif font-bold italic">{name[0]}</span>
+                  )}
                 </div>
                 <div>
                   <h2 className="text-3xl font-extrabold mb-2" style={{ color: 'var(--theme-text)' }}>{name}</h2>
@@ -73,9 +77,21 @@ export default function Products() {
                       </span>
                     ))}
                   </div>
-                  <button className="flex items-center gap-2 font-bold transition hover:opacity-70" style={{ color: 'var(--theme-primary)' }}>
-                    {lang === 'ar' ? `استكشف منصة ${name}` : `Explore ${name} platform`} <ArrowRight size={18} />
-                  </button>
+                  {prod.link ? (
+                    <a 
+                      href={prod.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="flex items-center gap-2 font-bold transition hover:opacity-70" 
+                      style={{ color: 'var(--theme-primary)' }}
+                    >
+                      {lang === 'ar' ? `استكشف منصة ${name}` : `Explore ${name} platform`} <ArrowRight size={18} />
+                    </a>
+                  ) : (
+                    <button className="flex items-center gap-2 font-bold transition hover:opacity-70" style={{ color: 'var(--theme-primary)' }}>
+                      {lang === 'ar' ? `استكشف منصة ${name}` : `Explore ${name} platform`} <ArrowRight size={18} />
+                    </button>
+                  )}
                 </div>
               </div>
             )})}

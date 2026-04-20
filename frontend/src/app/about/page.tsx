@@ -24,7 +24,7 @@ export default function About() {
                 : 'From our flagship omnichannel POS system Idarax to local delivery innovations like Drovo, everything we build is driven by a deep understanding of enterprise needs and technological excellence.'}
             </p>
           </div>
-          <div className="rounded-3xl p-12 aspect-square flex flex-col justify-center border" style={{ backgroundColor: 'var(--theme-section-alt)', borderColor: 'var(--theme-primary)' }}>
+          <div className="rounded-3xl p-12 aspect-square flex flex-col justify-center border" style={{ backgroundColor: 'var(--theme-section-alt)', borderColor: 'var(--theme-border)' }}>
             <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--theme-text)' }}>{lang === 'ar' ? 'رؤيتنا' : 'Our Vision'}</h3>
             <p className="leading-relaxed italic opacity-80" style={{ color: 'var(--theme-text)' }}>
               {lang === 'ar'
@@ -36,22 +36,22 @@ export default function About() {
 
         <h2 className="text-3xl font-bold mb-12 text-center" style={{ color: 'var(--theme-text)' }}>{lang === 'ar' ? 'المبادئ الأساسية' : 'Core Principles'}</h2>
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="p-8 border border-slate-200 rounded-2xl bg-white text-center shadow-sm">
-            <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: 'var(--theme-primary)', color: '#fff' }}>
+          <div className="p-8 border rounded-2xl text-center shadow-sm" style={{ backgroundColor: 'var(--theme-section-alt)', borderColor: 'var(--theme-border)' }}>
+            <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: 'var(--theme-primary)', color: 'var(--theme-primary-text)' }}>
               <Building2 size={24} />
             </div>
             <h4 className="text-xl font-bold mb-3" style={{ color: 'var(--theme-text)' }}>{lang === 'ar' ? 'مقياس المؤسسات' : 'Enterprise Scale'}</h4>
             <p className="opacity-80" style={{ color: 'var(--theme-text)' }}>{lang === 'ar' ? 'مصممة للتعامل مع الأحمال الهائلة بموثوقية لا هوادة فيها.' : 'Built to handle massive throughput with uncompromising reliability.'}</p>
           </div>
-          <div className="p-8 border border-slate-200 rounded-2xl bg-white text-center shadow-sm">
-            <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: 'var(--theme-primary)', color: '#fff' }}>
+          <div className="p-8 border rounded-2xl text-center shadow-sm" style={{ backgroundColor: 'var(--theme-section-alt)', borderColor: 'var(--theme-border)' }}>
+            <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: 'var(--theme-primary)', color: 'var(--theme-primary-text)' }}>
               <Users size={24} />
             </div>
             <h4 className="text-xl font-bold mb-3" style={{ color: 'var(--theme-text)' }}>{lang === 'ar' ? 'محورها المستخدم' : 'User Centric'}</h4>
             <p className="opacity-80" style={{ color: 'var(--theme-text)' }}>{lang === 'ar' ? 'أنظمة معقدة مقدمة من خلال واجهات بسيطة وجميلة.' : 'Complex systems presented through intuitive, beautiful interfaces.'}</p>
           </div>
-          <div className="p-8 border border-slate-200 rounded-2xl bg-white text-center shadow-sm">
-            <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: 'var(--theme-primary)', color: '#fff' }}>
+          <div className="p-8 border rounded-2xl text-center shadow-sm" style={{ backgroundColor: 'var(--theme-section-alt)', borderColor: 'rgba(0,0,0,0.05)' }}>
+            <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6" style={{ backgroundColor: 'var(--theme-primary)', color: 'var(--theme-primary-text)' }}>
               <Target size={24} />
             </div>
             <h4 className="text-xl font-bold mb-3" style={{ color: 'var(--theme-text)' }}>{lang === 'ar' ? 'الذكاء الاصطناعي متقدم' : 'AI Forward'}</h4>

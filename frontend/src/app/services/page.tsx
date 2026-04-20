@@ -4,13 +4,13 @@ import { Globe, Smartphone, LineChart, Blocks, ShieldCheck, Zap } from 'lucide-r
 import { useAppContext } from '@/context/AppContext';
 
 // Icons are always rendered white — they sit inside a theme-primary colored box
-const icons: Record<string, JSX.Element> = {
-  Globe: <Globe color="#ffffff" size={28} />,
-  Smartphone: <Smartphone color="#ffffff" size={28} />,
-  LineChart: <LineChart color="#ffffff" size={28} />,
-  Blocks: <Blocks color="#ffffff" size={28} />,
-  ShieldCheck: <ShieldCheck color="#ffffff" size={28} />,
-  Zap: <Zap color="#ffffff" size={28} />,
+const icons: Record<string, React.ReactNode> = {
+  Globe: <Globe color="var(--theme-primary-text)" size={28} />,
+  Smartphone: <Smartphone color="var(--theme-primary-text)" size={28} />,
+  LineChart: <LineChart color="var(--theme-primary-text)" size={28} />,
+  Blocks: <Blocks color="var(--theme-primary-text)" size={28} />,
+  ShieldCheck: <ShieldCheck color="var(--theme-primary-text)" size={28} />,
+  Zap: <Zap color="var(--theme-primary-text)" size={28} />,
 };
 
 export default function Services() {
@@ -50,7 +50,7 @@ export default function Services() {
             {lang === 'ar' ? 'جاري تحميل الابتكارات...' : 'Loading innovations...'}
           </div>
         ) : services.length === 0 ? (
-          <div className="text-center py-20 border-2 border-dashed border-slate-200 rounded-3xl opacity-50" style={{ color: 'var(--theme-text)' }}>
+          <div className="text-center py-20 border-2 border-dashed rounded-3xl opacity-50" style={{ color: 'var(--theme-text)', borderColor: 'var(--theme-border)' }}>
             {lang === 'ar' ? 'لا توجد خدمات مدرجة بعد. تحقق مرة أخرى قريباً.' : 'No services listed yet. Check back soon.'}
           </div>
         ) : (
@@ -59,10 +59,10 @@ export default function Services() {
               <div 
                 key={svc.id} 
                 className="p-8 md:p-10 rounded-3xl border transition hover:shadow-xl hover:-translate-y-1 shadow-sm"
-                style={{ borderColor: 'var(--theme-primary)', backgroundColor: 'var(--theme-section-alt)' }}
+                style={{ borderColor: 'var(--theme-border)', backgroundColor: 'var(--theme-section-alt)' }}
               >
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: 'var(--theme-primary)' }}>
-                  {icons[svc.icon] ?? <Zap color="#ffffff" size={28} />}
+                  {icons[svc.icon] ?? <Zap color="var(--theme-primary-text)" size={28} />}
                 </div>
                 <h3 className="text-2xl font-bold mb-4" style={{ color: 'var(--theme-text)' }}>
                   {lang === 'ar' && svc.nameAr ? svc.nameAr : svc.name}

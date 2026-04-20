@@ -1,18 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-corporate-dark: #0f172a;
-  --color-corporate-gray: #f8fafc;
-  --color-corporate-blue: #2563eb;
+  --color-theme-primary: var(--theme-primary);
+  --color-theme-text: var(--theme-text);
   --font-sans: "Inter", system-ui, sans-serif;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --card: #f8fafc;
-  --card-foreground: #0f172a;
-  --border: #e2e8f0;
+  --background: var(--theme-section-alt);
+  --foreground: var(--theme-text);
+  --card: var(--theme-section-bg);
+  --card-foreground: var(--theme-text);
+  --border: var(--theme-border);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,9 +33,24 @@ body {
 }
 
 .bento-card {
-  @apply bg-[#f8fafc] border border-[#e2e8f0] rounded-2xl p-8 hover:shadow-xl transition-all duration-300;
+  @apply rounded-2xl p-6 md:p-8 hover:shadow-xl transition-all duration-300;
+  background-color: var(--theme-section-alt);
+  border: 1px solid rgba(0,0,0,0.05);
 }
 
 .glass-nav {
-  @apply bg-white/80 backdrop-blur-md border-b border-[#e2e8f0];
+  @apply backdrop-blur-md border-b;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0,0,0,0.05);
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Accessibility: focus ring */
+:focus-visible {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 2px;
 }

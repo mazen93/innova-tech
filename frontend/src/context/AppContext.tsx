@@ -6,10 +6,19 @@ type Language = 'en' | 'ar';
 
 interface ThemeConfig {
   primaryColor: string;
+  primaryButtonTextColor: string;
   textColor: string;
   sectionBgColor: string;
   sectionBgColorAlt: string;
+  borderColor: string;
+  sidebarBgColor: string;
   logoUrl?: string | null;
+  facebookUrl?: string | null;
+  twitterUrl?: string | null;
+  instagramUrl?: string | null;
+  linkedinUrl?: string | null;
+  youtubeUrl?: string | null;
+  tiktokUrl?: string | null;
 }
 
 interface AppContextType {
@@ -35,9 +44,12 @@ export function AppProvider({ children, initialTheme }: { children: React.ReactN
   useEffect(() => {
     const root = document.documentElement;
     root.style.setProperty('--theme-primary', theme.primaryColor);
+    root.style.setProperty('--theme-primary-text', theme.primaryButtonTextColor || '#ffffff');
     root.style.setProperty('--theme-text', theme.textColor);
     root.style.setProperty('--theme-section-bg', theme.sectionBgColor || '#f8fafc');
     root.style.setProperty('--theme-section-alt', theme.sectionBgColorAlt || '#ffffff');
+    root.style.setProperty('--theme-border', theme.borderColor || '#e2e8f0');
+    root.style.setProperty('--theme-sidebar-bg', theme.sidebarBgColor || '#ffffff');
   }, [theme]);
 
   const toggleLang = () => {
